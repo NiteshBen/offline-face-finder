@@ -1,0 +1,31 @@
+# Python virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# PyInstaller build artifacts & binaries
+build/
+dist/
+*.spec
+OfflineFaceFinder.exe
+*.exe
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local user database & temporary index files
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
