@@ -10,6 +10,9 @@ dist/
 *.spec
 OfflineFaceFinder.exe
 *.exe
+*.zip
+data/
+photos/
 
 # Byte-compiled / optimized files
 __pycache__/

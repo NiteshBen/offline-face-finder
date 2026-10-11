@@ -17,19 +17,37 @@ A lightweight, 100% offline desktop application that scans your local computer's
 
 ### How to Run
 
-#### Option 1: Standalone Executable (Recommended)
-Simply double-click:
-```
-OfflineFaceFinder.exe
-```
-You don't need Python installed or any terminal commands. You can even create a shortcut to this `.exe` directly on your Windows Desktop!
+#### Option 1: Run on Any System via Docker 🐳 (Windows, Mac, Linux)
+The ultimate cross-platform method that guarantees it runs on any computer without missing dependencies:
+```bash
+# 1. Build the Docker image
+docker build -t offline-face-finder .
 
-#### Option 2: One-Click Batch Launcher
-Double-click `run.bat` in this folder.
+# 2. Run container (mount your photos folder to /photos)
+# Windows PowerShell:
+docker run -p 8501:8501 -v "C:\Users\YourName\Pictures:/photos" -v "${PWD}/data:/data" offline-face-finder
 
-#### Option 3: Via Python Terminal
+# Linux / Mac:
+docker run -p 8501:8501 -v "$HOME/Pictures:/photos" -v "$(pwd)/data:/data" offline-face-finder
+```
+Then open **`http://localhost:8501`** in any web browser!
+
+Or simply use **Docker Compose**:
+```bash
+docker compose up
+```
+
+#### Option 2: Portable Distribution for Windows (`OfflineFaceFinder_portable.zip`)
+To send this project to another Windows computer without installing Python or Docker:
+1. Extract **`OfflineFaceFinder_portable.zip`**.
+2. Open the extracted folder and double-click **`OfflineFaceFinder_portable.exe`**.
+*(Note: If a target Windows PC is completely fresh and lacks the standard C++ runtime, install the official [Microsoft Visual C++ 2015–2022 x64 Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe)).*
+
+#### Option 3: Local Python Launcher
 ```powershell
 .\.venv\Scripts\python.exe main.py
+# Or for the browser interface:
+.\.venv\Scripts\streamlit.exe run app_web.py
 ```
 
 ---

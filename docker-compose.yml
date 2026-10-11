@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  face-finder:
+    build: .
+    image: offline-face-finder:latest
+    container_name: offline_face_finder
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount your local photos folder into /photos in the container
+      # Replace './photos' with the absolute path to your pictures folder (e.g., 'D:/FamilyPhotos:/photos')
+      - "./photos:/photos"
+      # Persist the local face embeddings database across runs
+      - "./data:/data"
+    restart: unless-stopped
