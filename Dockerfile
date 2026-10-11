@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application source code and pre-downloaded offline models
 COPY models/ ./models/
-COPY database.py face_engine.py scanner.py app_web.py main.py ./
+COPY database.py face_engine.py scanner.py app_gui.py app_web.py main.py ./
 
 # Create mount points for external photos and database persistence
 RUN mkdir -p /photos /data

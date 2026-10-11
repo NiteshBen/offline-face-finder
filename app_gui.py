@@ -34,7 +34,19 @@ class OfflineFaceFinderApp(ctk.CTk):
             bundle_dir = os.path.dirname(os.path.abspath(__file__))
             app_dir = bundle_dir
 
-        models_dir = os.path.join(bundle_dir, "models")
+        # Robust candidate search to guarantee models are found in any environment (standalone, onedir, loose files)
+        candidate_dirs = [
+            os.path.join(bundle_dir, "models"),
+            os.path.join(bundle_dir, "_internal", "models"),
+            os.path.join(app_dir, "models"),
+            os.path.join(app_dir, "_internal", "models"),
+            os.path.join(os.getcwd(), "models"),
+        ]
+        models_dir = next(
+            (d for d in candidate_dirs if os.path.exists(os.path.join(d, "face_detection_yunet_2023mar.onnx"))),
+            os.path.join(bundle_dir, "models")
+        )
+
         detector_path = os.path.join(models_dir, "face_detection_yunet_2023mar.onnx")
         recognizer_path = os.path.join(models_dir, "face_recognition_sface_2021dec.onnx")
         db_path = os.path.join(app_dir, "face_index.db")

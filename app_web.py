@@ -18,7 +18,16 @@ st.set_page_config(
 
 # Initialize paths and singletons
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODELS_DIR = os.path.join(BASE_DIR, "models")
+candidate_dirs = [
+    os.path.join(BASE_DIR, "models"),
+    os.path.join(BASE_DIR, "_internal", "models"),
+    os.path.join(os.getcwd(), "models"),
+    "/app/models"
+]
+MODELS_DIR = next(
+    (d for d in candidate_dirs if os.path.exists(os.path.join(d, "face_detection_yunet_2023mar.onnx"))),
+    os.path.join(BASE_DIR, "models")
+)
 DETECTOR_PATH = os.path.join(MODELS_DIR, "face_detection_yunet_2023mar.onnx")
 RECOGNIZER_PATH = os.path.join(MODELS_DIR, "face_recognition_sface_2021dec.onnx")
 DB_DIR = "/data" if os.path.isdir("/data") else BASE_DIR
