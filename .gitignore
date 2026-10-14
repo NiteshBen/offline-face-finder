@@ -13,6 +13,7 @@ OfflineFaceFinder.exe
 *.zip
 data/
 photos/
+vclib/
 
 # Byte-compiled / optimized files
 __pycache__/
